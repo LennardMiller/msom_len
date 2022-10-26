@@ -70,7 +70,8 @@ event writestdout (i++) {
   fprintf (stdout,"i = %i, dt = %g, t = %g, ke_1 = %g\n", i, dt, t, ke);
 }
 
-event output (t = 0; t <= tend+1e-10;  t += dtout) {
+event output (i = 0; i <= iend; i += 1){
   fprintf(stdout,"write file\n");
   write_nc();
 }
+

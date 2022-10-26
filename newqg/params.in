@@ -1,22 +1,29 @@
 #!sh
 # input parameter files
 
-N  = 1024
-L0 = 100
+tau0 = 1
+f0 = 0
+hEkb  = 0
+beta = 1
+H = 1
+rho = 1
 
-f0 = 46.5
-hEkb  = 0.001
-tau0 = 0.001
-nu = 5
-beta = 0.43
+# In this code L0 and nu are adjusted to fit the non-dimensional parameters while tau0, beta and h are
+# fixed at 1.
+
+eps_nl = 1e-4
+eps_fr = 2.5e-2
+
+N = 256
+
 # sbc = 0: free slip, 100: no slip
 sbc = 100. 
 # dh must be an array
 dh   = [1.0]
 
 # timestepping
-DT    = 5.e-2
-tend  = 5.
-dtout = 0.0002
+DT    = 5
+iend = 300
 CFL   = 0.2
 TOLERANCE = 1e-3
+#iout = 24000
