@@ -1,0 +1,29 @@
+## Some useful commands
+
+- run gc code
+
+qcc -O3 qg.c -lm -lnetcdf
+./a.out
+
+- run qg code in openmp
+
+export OMP_NUM_THREADS=6
+qcc -O3 qg.c -o qg.e -fopenmp -lm -lnetcdf
+./qg.e
+
+- run qg code in mpicc
+
+CC99='mpicc -std=c99' qcc -O3 -D_MPI=4 qg.c -o qg.e -lm -lnetcdf
+mpirun -np 4 ./qg.e
+
+- connect to GriCAD
+
+ssh-add
+ssh millerl@access-gricad.univ-grenoble-alpes.fr
+ssh 'froggy.ciment'
+
+- run on GriCAD
+
+on my PC:
+qcc -source -D_MPI=64 qg.c
+scp _qg.c dahu.ciment:

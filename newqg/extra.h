@@ -67,7 +67,7 @@ void read_params(char* path2file)
   /**
      Viscosity CFL = 0.5
    */
-  if (nu  != 0) DT = 0.5*min(DT,sq(L0/N)/nu/4.);
+  if (beta  != 0) DT = min(12/(beta*L0),0.5*min(DT,sq(L0/N)/nu/4.));
 
 
   fprintf(stdout, "Config: N = %d, nl = %d, L0 = %g\n", N, nl, L0);
@@ -96,7 +96,7 @@ void backup_config()
 {
   fprintf(stdout, "Backup config\n");
   char ch;
-  char name[80];
+  char name[100];
   sprintf (name,"%sparams.in", dpath);
   FILE * source = fopen("params.in", "r");
   FILE * target = fopen(name, "w");
