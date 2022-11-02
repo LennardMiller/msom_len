@@ -46,7 +46,7 @@ event init (i = 0) {
   } else {
   foreach() 
     foreach_layer() 
-      psi[] = 1e-3*noise();
+      psi[] = 0; //1e-3*noise();
   }
 
 }
@@ -70,7 +70,7 @@ event writestdout (i++) {
   fprintf (stdout,"i = %i, dt = %g, t = %g, ke_1 = %g\n", i, dt, t, ke);
 }
 
-event output (i = 0; i <= iend; i += 1){
+event output (i = 0; i <= iend; i += 24000){
   fprintf(stdout,"write file\n");
   write_nc();
 }

@@ -76,7 +76,7 @@ void read_params(char* path2file)
   /**
      Viscosity CFL = 0.5
    */
-  if (beta  != 0) DT = min(4*3.1415/(beta*L0),0.5*min(DT,sq(L0/N)/nu/4.));
+  if (beta  != 0) DT = min(3.1415/(2.*beta*L0),0.5*min(DT,sq(L0/N)/nu/4.));
   else 0.5*min(DT,sq(L0/N)/nu/4.);
 
   fprintf(stdout, "Config: N = %d, nl = %d, L0 = %g\n", N, nl, L0);
