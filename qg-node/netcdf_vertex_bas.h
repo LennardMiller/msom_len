@@ -158,14 +158,14 @@ void write_nc(struct OutputNetcdf p) {
   nc_rec += 1;
   float loctime = t;
 
-  /* size_t startt[1], countt[1]; */
-  /* startt[0] = nc_rec; //time */
-  /* countt[0] = 1; */
-  /* if (pid() == 0) { // master */
-  /*   if ((nc_err = nc_put_vara_float(ncid, t_varid, startt, countt, */
-  /*                                   &loctime))) */
-  /*     ERR(nc_err); */
-  /* } */
+  size_t startt[1], countt[1];
+  startt[0] = nc_rec; //time */
+  countt[0] = 1;
+  if (pid() == 0) { // master */
+    if ((nc_err = nc_put_vara_float(ncid, t_varid, startt, countt,
+                                    &loctime)))
+      ERR(nc_err);
+  }
 
 
 

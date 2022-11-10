@@ -41,20 +41,29 @@ void read_params(char* path2file)
       // basilisk constants
       if      (strcmp(tmps1,"N")    ==0) { N     = atoi(tmps2); }
 //      else if (strcmp(tmps1,"nl")   ==0) { nl    = atoi(tmps2); }
-      else if (strcmp(tmps1,"L0")   ==0) { L0    = atof(tmps2); }
       else if (strcmp(tmps1,"DT")   ==0) { DT    = atof(tmps2); }
       else if (strcmp(tmps1,"CFL")  ==0) { CFL   = atof(tmps2); }
       else if (strcmp(tmps1,"TOLERANCE")==0) { TOLERANCE= atof(tmps2); }
       // qg specific constants
+      else if (strcmp(tmps1,"eps_nl")==0){
+        eps_nl = atof(tmps2);
+        L0 = pow(tau0/(pow(eps_nl*beta,2.)), 1./3.);
+        fprintf(stdout, "nonlinear thickness is %g.\n", pow(tau0/(pow(L0, 3.)*pow(beta, 2.)),0.5));
+      }
+      else if (strcmp(tmps1,"eps_fr")==0){
+        eps_fr = atof(tmps2);
+        nu = pow(eps_fr*L0, 3.)*beta;
+        fprintf(stdout, "frictional layer thickness is %g.\n", pow(nu/(beta*pow(L0,3.)),1./3.));
+      }
       else if (strcmp(tmps1,"f0")   ==0) { f0    = atof(tmps2); }
       else if (strcmp(tmps1,"beta") ==0) { beta  = atof(tmps2); }
       else if (strcmp(tmps1,"hEkb") ==0) { hEkb  = atof(tmps2); }
       else if (strcmp(tmps1,"tau0") ==0) { tau0  = atof(tmps2); }
-      else if (strcmp(tmps1,"nu")   ==0) { nu    = atof(tmps2); }
       else if (strcmp(tmps1,"sbc")  ==0) { sbc   = atof(tmps2); }
       else if (strcmp(tmps1,"tend") ==0) { tend  = atof(tmps2); }
       else if (strcmp(tmps1,"dtout")==0) { dtout = atof(tmps2); }
       else if (strcmp(tmps1,"dh")   ==0) { str2array(tmps2, dh);}
+      else if (strcmp(tmps1,"iend") ==0) { iend  = atof(tmps2); }
 
 //      printf("%s => %s\n", tmps1, tmps2);
     }
@@ -67,8 +76,8 @@ void read_params(char* path2file)
   /**
      Viscosity CFL = 0.5
    */
-  if (nu  != 0) DT = 0.5*min(DT,sq(L0/N)/nu/4.);
-
+  if (beta  != 0) DT = min(3.1415/(2.*beta*L0),0.5*min(DT,sq(L0/N)/nu/4.));
+  else 0.5*min(DT,sq(L0/N)/nu/4.);
 
   fprintf(stdout, "Config: N = %d, L0 = %g\n", N,  L0);
 //  fprintf(stdout, "Config: N = %d, nl = %d, L0 = %g\n", N, nl, L0);
@@ -97,7 +106,7 @@ void backup_config()
 {
   fprintf(stdout, "Backup config\n");
   char ch;
-  char name[80];
+  char name[120];
   sprintf (name,"%sparams.in", dpath);
   FILE * source = fopen("params.in", "r");
   FILE * target = fopen(name, "w");

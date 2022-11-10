@@ -75,11 +75,16 @@ Van Hoft.  Hence all fields are defined at cell vertices. (still experimental)
 */
 
 #include "predictor-corrector.h"
-#include "bderembl/libs/nodal-poisson.h"
+#include "nodal-poisson.h"
 
 /**
    User defined constants
  */
+
+double eps_fr = 0.;
+double eps_nl = 0.;
+
+double iend = 0.;
 
 double f0 = 1.0;
 double beta = 0.;
@@ -244,7 +249,7 @@ trace
 void surface_forcing  (scalar dqdt)
 {
   foreach_inner_vertex()
-    dqdt[] -= tau0/dh[0]*3/2*pi/L0*sin(2*pi*y/L0)*sin(pi*y/L0);
+    dqdt[] -= tau0/L0*pi*sin(pi*y/L0);
 }
 
 

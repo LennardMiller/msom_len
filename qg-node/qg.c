@@ -72,8 +72,7 @@ int main(int argc,char* argv[]) {
 event init (i = 0) {
 
   foreach_vertex() 
-    psi[] = 1e-3*noise();
-//    psi[] = 1e-3*noise();
+    psi[] = 0;
   boundary({psi});
 
 }
@@ -97,7 +96,14 @@ event writestdout (i++) {
   fprintf (stdout,"i = %i, dt = %g, t = %g, ke_1 = %g\n", i, dt, t, ke);
 }
 
-event output (t = 0; t <= tend+1e-10;  t += dtout) {
+event output (i = 0; i <= iend; i += 1){
   fprintf(stdout,"write file\n");
   write_nc();
 }
+
+
+
+//event outputsec (i = 1; i <= iend; i += 24000){
+//  fprintf(stdout,"write file\n");
+//  write_nc();
+//}
