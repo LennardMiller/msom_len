@@ -45,15 +45,14 @@ void read_params(char* path2file)
       else if (strcmp(tmps1,"CFL")  ==0) { CFL   = atof(tmps2); }
       else if (strcmp(tmps1,"TOLERANCE")==0) { TOLERANCE= atof(tmps2); }
       // qg specific constants
-      else if (strcmp(tmps1,"eps_nl")==0){
-        eps_nl = atof(tmps2);
-        L0 = pow(tau0/(pow(eps_nl*beta,2.)), 1./3.);
-        fprintf(stdout, "nonlinear thickness is %g.\n", pow(tau0/(pow(L0, 3.)*pow(beta, 2.)),0.5));
+      else if (strcmp(tmps1,"del_nl")==0){
+        del_nl = atof(tmps2);
+        L0 = pow(del_fr, 1./6.)/pow(del_nl, 2./3.);
+	nu = pow(del_fr, 7./2.)/pow(del_nl,2.);
       }
-      else if (strcmp(tmps1,"eps_fr")==0){
-        eps_fr = atof(tmps2);
-        nu = pow(eps_fr*L0, 3.)*beta;
-        fprintf(stdout, "frictional layer thickness is %g.\n", pow(nu/(beta*pow(L0,3.)),1./3.));
+      else if (strcmp(tmps1,"del_fr")==0){
+        del_fr = atof(tmps2);
+	tau0 = pow(del_fr, 1./2.);
       }
       else if (strcmp(tmps1,"f0")   ==0) { f0    = atof(tmps2); }
       else if (strcmp(tmps1,"beta") ==0) { beta  = atof(tmps2); }
@@ -68,6 +67,8 @@ void read_params(char* path2file)
 //      printf("%s => %s\n", tmps1, tmps2);
     }
     fclose(fp);
+    fprintf(stdout, "frictional layer thickness is %g.\n", pow(nu/(beta*pow(L0,3.)),1./3.));
+    fprintf(stdout, "nonlinear thickness is %g.\n", pow(tau0/(pow(L0, 3.)*pow(beta, 2.)),0.5));
   } else {
     fprintf(stdout, "file %s not found\n", path2file);
     exit(0);

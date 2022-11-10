@@ -1,20 +1,21 @@
 #!sh
 # input parameter files
 
-tau0 = 1
 f0 = 0
 hEkb  = 0
 beta = 1
 H = 1
 rho = 1
 
-# In this code L0 and nu are adjusted to fit the non-dimensional parameters while tau0, beta and h are
-# fixed at 1.
+# In this code L0, tau0 and nu are adjusted to rescale the energy to take a 
+# dimensional value of around 1. The energy is assumed to scale according to
+# eddies that give a finite dissipation according to a Sverdrup energy input
+# and the size of the eddies are proportional to the Munk layer width
 
-eps_nl = 1e-2
-eps_fr = 2.5e-3
+del_fr = 5e-2
+del_nl = 1e-2
 
-N = 2048
+N = 64
 
 # sbc = 0: free slip, 100: no slip
 sbc = 100. 

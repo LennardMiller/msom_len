@@ -11,8 +11,8 @@ double * dhf;
    User defined constants
  */
 
-double eps_fr = 0.;
-double eps_nl = 0.;
+double del_fr = 0.;
+double del_nl = 0.;
 
 double iend = 0.;
 
