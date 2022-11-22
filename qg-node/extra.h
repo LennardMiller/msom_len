@@ -45,15 +45,15 @@ void read_params(char* path2file)
       else if (strcmp(tmps1,"CFL")  ==0) { CFL   = atof(tmps2); }
       else if (strcmp(tmps1,"TOLERANCE")==0) { TOLERANCE= atof(tmps2); }
       // qg specific constants
-      else if (strcmp(tmps1,"eps_nl")==0){
-        eps_nl = atof(tmps2);
-        L0 = pow(tau0/(pow(eps_nl*beta,2.)), 1./3.);
+      else if (strcmp(tmps1,"delta_nl")==0){
+        delta_nl = atof(tmps2);
+        L0 = pow(tau0/(pow(delta_nl*beta,2.)), 1./3.);
         fprintf(stdout, "nonlinear thickness is %g.\n", pow(tau0/(pow(L0, 3.)*pow(beta, 2.)),0.5));
       }
-      else if (strcmp(tmps1,"eps_fr")==0){
-        eps_fr = atof(tmps2);
-        nu = pow(eps_fr*L0, 3.)*beta;
-        fprintf(stdout, "frictional layer thickness is %g.\n", pow(nu/(beta*pow(L0,3.)),1./3.));
+      else if (strcmp(tmps1,"Re")==0){
+        Re = atof(tmps2);
+        nu = pow(tau0*pow(L0,3.)/pow(Re,4.), 1./2.);
+        fprintf(stdout, "Sublayer Re is %g.\n", pow(tau0*pow(L0,3.)/pow(nu,2.),1./4.));
       }
       else if (strcmp(tmps1,"f0")   ==0) { f0    = atof(tmps2); }
       else if (strcmp(tmps1,"beta") ==0) { beta  = atof(tmps2); }

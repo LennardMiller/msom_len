@@ -11,10 +11,10 @@ rho = 1
 # In this code L0 and nu are adjusted to fit the non-dimensional parameters while tau0, beta and h are
 # fixed at 1.
 
-eps_nl = 1e-2
-eps_fr = 7.5e-3
+delta_nl = 1e2
+Re = 0.0001
 
-N = 2048
+N = 64
 
 # sbc = 0: free slip, 100: no slip
 sbc = 100. 
@@ -23,8 +23,8 @@ dh   = [1.0]
 
 # timestepping
 DT    = 5
-iend = 7600000
+iend = 3100000
 CFL   = 0.2
 TOLERANCE = 1e-3
-#iout = 24000
+#iout = 4600
 

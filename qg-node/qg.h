@@ -81,8 +81,8 @@ Van Hoft.  Hence all fields are defined at cell vertices. (still experimental)
    User defined constants
  */
 
-double eps_fr = 0.;
-double eps_nl = 0.;
+double Re = 0.;
+double delta_nl = 0.;
 
 double iend = 0.;
 
