@@ -1,0 +1,37 @@
+#!sh
+# input parameter files
+
+tau0 = 0
+f0 = 0
+hEkb  = 0
+H = 1
+rho = 1
+psi0 = 1
+
+# domain parameters
+
+L0 = 1
+l0 = 0.05
+xc = 0.5
+yc = 0.25
+
+# In this code L0 and nu are adjusted to fit the non-dimensional parameters while tau0, beta and h are
+# fixed at 1.
+
+Rh = 1e2
+Re = 1e2
+
+N = 64
+
+# sbc = 0: free slip, 100: no slip
+sbc = 100. 
+# dh must be an array
+dh   = [1.0]
+
+# timestepping
+DT    = 5
+iend = 3000000
+CFL   = 0.2
+TOLERANCE = 1e-3
+#iout = 9250
+

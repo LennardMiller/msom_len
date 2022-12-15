@@ -83,7 +83,7 @@ event writestdout (i++) {
   fprintf (stdout,"i = %i, dt = %g, t = %g, ke_1 = %g\n", i, dt, t, ke);
 }
 
-event output (i = 0; i <= iend; i += 100){
+event output (i = 0; i <= iend; i += 6500){
   fprintf(stdout,"write file\n");
   write_nc();
 }

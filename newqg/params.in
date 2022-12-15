@@ -12,10 +12,10 @@ rho = 1
 # eddies that give a finite dissipation according to a Sverdrup energy input
 # and the size of the eddies are proportional to the Munk layer width
 
-del_fr = 5e-2
+del_fr = 7.5e-3
 del_nl = 1e-2
 
-N = 64
+N = 2048
 
 # sbc = 0: free slip, 100: no slip
 sbc = 100. 
@@ -27,5 +27,5 @@ DT    = 5
 iend = 7600000
 CFL   = 0.2
 TOLERANCE = 1e-3
-#iout = 24000
+#iout = 12000
 

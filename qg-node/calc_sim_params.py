@@ -2,10 +2,10 @@
 
 import numpy as np
 
-N = 2048 # grid size
+N = 4096 # grid size
 N_proc = 256 # number of processors
-t_phys = 24 # runtime on dahu in hours
-size_out = 10 # size of output file in GB
+t_phys = 25 # runtime on dahu in hours
+size_out = 15 # size of output file in GB
 
 safety = 2.5 # safety factor for computation length variations
 
